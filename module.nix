@@ -32,12 +32,19 @@ in {
     config,
     pkgs,
     self',
+    system,
     ...
   }: {
     # NOTE need mergeable attrset for colocation since attributes of legacyPackages are not
     options.lib = mkOption {
       default = {};
       type = lazyAttrsOf raw;
+    };
+    config._module.args.pkgs = import inputs.nixpkgs {
+      inherit system;
+      # Android projects need this by default
+      config.allowUnfree = true;
+      config.android_sdk.accept_license = true;
     };
     config.formatter = pkgs.alejandra;
     config.legacyPackages = mkMerge [
