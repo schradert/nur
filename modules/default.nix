@@ -1,3 +1,3 @@
 {
-  imports = [./lockscreen-widgets];
+  imports = [./lockscreen-widgets ./zellij-plugins];
 }

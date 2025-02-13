@@ -9,5 +9,7 @@
     # Packages
     gradle2nix.url = github:tadfisher/gradle2nix/v2;
     gradle2nix.inputs.nixpkgs.follows = "nixpkgs";
+    fenix.url = github:nix-community/fenix;
+    fenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 }

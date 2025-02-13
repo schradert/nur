@@ -6,7 +6,7 @@
   self,
   ...
 }: let
-  inherit (lib) mapAttrs mkForce mkMerge mkOption types;
+  inherit (lib) mapAttrs mkMerge mkOption types;
   inherit (types) deferredModule lazyAttrsOf raw;
   defineClassModules = key: class:
     mkOption {
