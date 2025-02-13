@@ -4,7 +4,7 @@
     self',
     ...
   }: {
-    legacyPackages.zellijPlugins = builtins.mapAttrs (_: self'.legacyPackages.buildZellijPlugin) {
+    packages = builtins.mapAttrs (_: self'.legacyPackages.buildZellijPlugin) {
       harpoon.cargoHash = "sha256-5b3lvxobzNbu4i4dyMGPnXfiWCENaqX7t8lfSgHQ3Rs=";
       harpoon.src = pkgs.fetchFromGitHub {
         owner = "Nacho114";
