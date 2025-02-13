@@ -1,5 +1,5 @@
 {
-  imports = [./plugins.nix];
+  imports = [./module.nix ./plugins.nix];
   perSystem = {
     inputs',
     pkgs,
