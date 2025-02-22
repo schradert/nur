@@ -1,4 +1,4 @@
-{
+{self, ...}: {
   flake.homeManagerModules.zellij-plugins = {
     config,
     lib,
@@ -15,7 +15,8 @@
       type = hm.types.selectorFunction;
     };
     config = mkIf zellij.enable {
-      programs.zellij.settings.plugins = mapAttrs mapPluginPath (zellij.plugins pkgs);
+      nixpkgs.overlays = [self.overlays.zellij-plugins];
+      programs.zellij.settings.plugins = mapAttrs mapPluginPath (zellij.plugins pkgs.zellijPlugins);
     };
   };
 }

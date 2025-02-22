@@ -1,4 +1,7 @@
-{
+{lib, withSystem, ...}: {
+  flake.overlays.zellij-plugins = final: _: {
+    zellijPlugins = withSystem final.stdenv.hostPlatform.system ({self', ...}: lib.genAttrs ["harpoon" "room" "jbz" "monocle" "multitask" "forgot"] (lib.flip lib.getAttr self'));
+  };
   perSystem = {
     pkgs,
     self',
