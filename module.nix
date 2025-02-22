@@ -24,7 +24,7 @@ in {
   imports = [./modules];
   options.flake = flake-parts-lib.mkSubmoduleOptions {
     commonModules = defineClassModules "commonModules" null;
-    homeManagerModules = defineClassModules "homeManagerModules" "home-manager";
+    homeManagerModules = defineClassModules "homeManagerModules" "homeManager";
     nixosModules = defineClassModules "nixosModules" "nixos";
   };
   config.systems = import inputs.systems;
