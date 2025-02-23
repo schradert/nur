@@ -1,5 +1,9 @@
-{
-  imports = [./module.nix ./plugins.nix];
+{withSystem, ...}: {
+  imports = [./extras.nix ./module.nix ./plugins.nix];
+  flake.overlays.zellij = final: _: withSystem final.stdenv.hostPlatform.system ({self', ...}: {
+    inherit (self'.packages) zide;
+    zellijPlugins = {inherit (self'.packages) harpoon room jbz monocle multitask zellij-forgot;};
+  });
   perSystem = {
     inputs',
     pkgs,
