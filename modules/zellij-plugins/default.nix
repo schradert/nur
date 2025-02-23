@@ -1,9 +1,11 @@
 {withSystem, ...}: {
   imports = [./extras.nix ./module.nix ./plugins.nix];
-  flake.overlays.zellij = final: _: withSystem final.stdenv.hostPlatform.system ({self', ...}: {
-    inherit (self'.packages) zide;
-    zellijPlugins = {inherit (self'.packages) harpoon room jbz monocle multitask zellij-forgot;};
-  });
+  flake.overlays.zellij = final: _: let
+    selfPackages = withSystem final.stdenv.hostPlatform.system ({self', ...}: self'.packages);
+  in {
+    inherit (selfPackages) zide;
+    zellijPlugins = {inherit (selfPackages) harpoon room jbz monocle multitask zellij-forgot;};
+  };
   perSystem = {
     inputs',
     pkgs,
