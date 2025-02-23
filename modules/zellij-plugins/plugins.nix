@@ -83,6 +83,7 @@
         rev = "62369617b2aa1ac30c822361fb820dfa13ae4c70";
         hash = "sha256-qldgUK4yEDx7i8TH3dGIBBzaIJCNCaeEduP+NiLPSt8=";
       };
+      zellij-forgot.passthru.filename = "zellij_forgot";
       zellij-forgot.src = pkgs.fetchFromGitHub {
         owner = "karimould";
         repo = "zellij-forgot";
