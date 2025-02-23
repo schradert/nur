@@ -1,10 +1,57 @@
-{
+{withSystem, ...}: {
+  flake.overlays.zellij = final: _: let
+    selfPackages = withSystem final.stdenv.hostPlatform.system ({self', ...}: self'.packages);
+  in {
+    inherit (selfPackages) zide;
+    zellijPlugins = {
+      inherit (selfPackages)
+        harpoon
+        room
+        jbz
+        monocle
+        multitask
+        zellij-forgot
+        zjswitcher
+        zjpane
+        zj-quit
+        zj-status-bar
+        zj-docker
+        zellij-workspace
+        zellij-what-time
+        zellij-switch
+        zellij-sessionizer
+        zellij-jump-list
+        zellij-favs
+        zellij-datetime
+        zellij-choose-tree
+        zellij-cb
+        zellij-bookmarks
+        zellij-autolock
+        zbuffers
+      ;
+    };
+  };
   perSystem = {
     pkgs,
     self',
     ...
   }: {
-    packages = builtins.mapAttrs (_: self'.legacyPackages.buildZellijPlugin) {
+    packages = {
+      zide = pkgs.callPackage ({
+        stdenv,
+        fetchFromGitHub,
+      }: stdenv.mkDerivation rec {
+        pname = "zide";
+        version = "3.1.0";
+        src = fetchFromGitHub {
+          owner = "josephschmitt";
+          repo = "zide";
+          rev = "v${version}";
+          hash = "sha256-CqpqkGdsEGZ5IeuZD87ONlN68MkTgip9SNnsxzQ1YGk=";
+        };
+        installPhase = "cp -R . $out";
+      }) {};
+    } // builtins.mapAttrs (_: self'.legacyPackages.buildZellijPlugin) {
       harpoon.cargoHash = "sha256-5b3lvxobzNbu4i4dyMGPnXfiWCENaqX7t8lfSgHQ3Rs=";
       harpoon.src = pkgs.fetchFromGitHub {
         owner = "Nacho114";
@@ -48,7 +95,7 @@
         rev = "v0.2.1";
         hash = "sha256-lACbFz3GP4E2kArdjTjpLdd1GpG9s7fo6mR0ltVO9Og=";
       };
-      zpane.src = pkgs.fetchFromGitHub {
+      zjpane.src = pkgs.fetchFromGitHub {
         owner = "FuriouZz";
         repo = "zjpane";
         rev = "v0.2.0";
