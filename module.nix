@@ -6,6 +6,7 @@
   self,
   ...
 }: let
+  inherit (inputs) flake-parts systems nixpkgs fenix;
   inherit (lib) attrValues mapAttrs mkMerge mkOption types;
   inherit (types) deferredModule lazyAttrsOf raw;
   defineClassModules = key: class:
@@ -20,14 +21,14 @@
     };
 in {
   # NOTE flake-parts definition of nixosModules exists but excludes _class
-  disabledModules = ["${inputs.flake-parts}/modules/nixosModules.nix"];
+  disabledModules = ["${flake-parts}/modules/nixosModules.nix"];
   imports = [./modules];
   options.flake = flake-parts-lib.mkSubmoduleOptions {
     commonModules = defineClassModules "commonModules" null;
     homeManagerModules = defineClassModules "homeManagerModules" "homeManager";
     nixosModules = defineClassModules "nixosModules" "nixos";
   };
-  config.systems = import inputs.systems;
+  config.systems = import systems;
   config.perSystem = {
     config,
     pkgs,
@@ -40,7 +41,7 @@ in {
       default = {};
       type = lazyAttrsOf raw;
     };
-    config._module.args.pkgs = import inputs.nixpkgs {
+    config._module.args.pkgs = import nixpkgs {
       inherit system;
       overlays = attrValues self.overlays ++ [fenix.overlays.default];
       # Android projects need this by default
