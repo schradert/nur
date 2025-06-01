@@ -10,6 +10,7 @@
     ./pug.nix
     ./steam-rom-manager.nix
     ./tetrigo.nix
+    ./webtorrent-cli.nix
     ./lockscreen-widgets
     ./zellij-plugins
   ];
