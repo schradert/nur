@@ -1,3 +1,7 @@
 {
-  imports = [./lockscreen-widgets ./zellij-plugins];
+  imports = [
+    ./angle.nix
+    ./lockscreen-widgets
+    ./zellij-plugins
+  ];
 }
