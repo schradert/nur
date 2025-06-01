@@ -12,6 +12,7 @@
     ./tetrigo.nix
     ./webtorrent-cli.nix
     ./wtfutil.nix
+    ./xenia.nix
     ./lockscreen-widgets
     ./zellij-plugins
   ];
