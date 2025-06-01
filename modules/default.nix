@@ -11,6 +11,7 @@
     ./steam-rom-manager.nix
     ./tetrigo.nix
     ./webtorrent-cli.nix
+    ./wtfutil.nix
     ./lockscreen-widgets
     ./zellij-plugins
   ];
