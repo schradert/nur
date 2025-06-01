@@ -6,7 +6,7 @@
   self,
   ...
 }: let
-  inherit (lib) mapAttrs mkMerge mkOption types;
+  inherit (lib) attrValues mapAttrs mkMerge mkOption types;
   inherit (types) deferredModule lazyAttrsOf raw;
   defineClassModules = key: class:
     mkOption {
@@ -42,6 +42,7 @@ in {
     };
     config._module.args.pkgs = import inputs.nixpkgs {
       inherit system;
+      overlays = attrValues self.overlays ++ [fenix.overlays.default];
       # Android projects need this by default
       config.allowUnfree = true;
       config.android_sdk.accept_license = true;
