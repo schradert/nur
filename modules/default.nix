@@ -13,6 +13,7 @@
     ./webtorrent-cli.nix
     ./wtfutil.nix
     ./xenia.nix
+    ./decky-plugins
     ./lockscreen-widgets
     ./zellij-plugins
   ];
