@@ -9,6 +9,7 @@
     ./navi.nix
     ./pug.nix
     ./steam-rom-manager.nix
+    ./tetrigo.nix
     ./lockscreen-widgets
     ./zellij-plugins
   ];
