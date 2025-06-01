@@ -7,6 +7,7 @@
     ./macchina.nix
     ./markmap.nix
     ./navi.nix
+    ./pug.nix
     ./lockscreen-widgets
     ./zellij-plugins
   ];
