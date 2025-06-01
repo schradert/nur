@@ -5,6 +5,7 @@
     ./gtt.nix
     ./ladybird.nix
     ./macchina.nix
+    ./markmap.nix
     ./lockscreen-widgets
     ./zellij-plugins
   ];
