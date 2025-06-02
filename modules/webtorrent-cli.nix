@@ -2,7 +2,7 @@
   perSystem = {pkgs, ...}: {packages = {inherit (pkgs) webtorrent-cli;};};
   flake.overlays.webtorrent-cli = final: _: {
     # TODO figure out what is breaking this! https://discourse.nixos.org/t/buildnpmpackage-enotcached/58832
-    webtorrent-cli = pkgs.callPackage ({
+    webtorrent-cli = final.callPackage ({
       lib,
       buildNpmPackage,
       fetchFromGitHub,
