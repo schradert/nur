@@ -14,7 +14,6 @@
       type = hm.types.selectorFunction;
     };
     config = mkIf zellij.enable {
-      nixpkgs.overlays = [self.overlays.zellij];
       programs.zellij.settings.plugins = pipe pkgs.zellijPlugins [
         zellij.plugins
         (map (package: nameValuePair package.pname package))
