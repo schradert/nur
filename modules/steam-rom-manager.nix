@@ -1,4 +1,5 @@
 {
+  perSystem = {pkgs, ...}: {packages = {inherit (pkgs) steam-rom-manager;};};
   flake.overlays.steam-rom-manager = final: _: {
     steam-rom-manager = final.callPackage ({
       lib,

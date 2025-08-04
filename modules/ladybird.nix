@@ -1,4 +1,5 @@
 {
+  perSystem = {pkgs, ...}: {packages = {inherit (pkgs) ladybird;};};
   flake.overlays.ladybird = final: prev: {
     ladybird = prev.ladybird.overrideAttrs (old: {
       nativeBuildInputs = old.nativeBuildInputs ++ [final.copyDesktopItems];

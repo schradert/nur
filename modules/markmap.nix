@@ -1,4 +1,5 @@
 {
+  perSystem = {pkgs, ...}: {packages = {inherit (pkgs) markmap;};};
   flake.overlays.markmap = final: _: {
     markmap = final.callPackage ({
       lib,

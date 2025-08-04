@@ -1,4 +1,5 @@
 {
+  perSystem = {pkgs, ...}: {packages = {inherit (pkgs) xenia-canary;};};
   flake.overlays.xenia = final: _: {
     # TODO fix xenia build
     # NOTE https://github.com/NixOS/nixpkgs/issues/108212

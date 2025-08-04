@@ -1,8 +1,10 @@
 {
-  perSystem = {pkgs, ...}: {
-    packages.cli-pride-flags = pkgs.callPackage ({
+  perSystem = {pkgs, ...}: {packages = {inherit (pkgs) cli-pride-flags;};};
+  flake.overlays.cli-pride-flags = final: _: {
+    cli-pride-flags = final.callPackage ({
       lib,
       stdenv,
+
       fetchFromGitHub,
       pnpm_9,
       nodejs,

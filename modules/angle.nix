@@ -1,4 +1,5 @@
 {
+  perSystem = {pkgs, ...}: {packages = {inherit (pkgs) unofficial-angle;};};
   flake.overlays.angle = final: prev: {
     # TODO how do I actually do this build?
     unofficial-angle = final.callPackage ({

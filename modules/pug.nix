@@ -1,4 +1,5 @@
 {
+  perSystem = {pkgs, ...}: {packages = {inherit (pkgs) pug;};};
   flake.overlays.pug = final: _: {
     pug = final.callPackage ({
       lib,

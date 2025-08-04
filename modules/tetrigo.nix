@@ -1,4 +1,5 @@
 {
+  perSystem = {pkgs, ...}: {packages = {inherit (pkgs) tetrigo;};};
   flake.overlays.tetrigo = final: _: {
     tetrigo = final.callPackage ({
       lib,

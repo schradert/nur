@@ -4,6 +4,7 @@
     ./cli-pride-flags.nix
     ./gtt.nix
     ./ladybird.nix
+    ./lockscreen-widgets.nix
     ./macchina.nix
     ./markmap.nix
     ./navi.nix
@@ -14,7 +15,6 @@
     ./wtfutil.nix
     ./xenia.nix
     ./decky-plugins
-    ./lockscreen-widgets
     ./zellij-plugins
   ];
 }
