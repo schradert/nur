@@ -4,6 +4,7 @@
       lib,
       buildGoModule,
       fetchFromGitHub,
+      makeWrapper,
     }:
       buildGoModule rec {
         pname = "pug";
@@ -15,6 +16,7 @@
           hash = "sha256-XQkQ9K3gB9wSgQ+Bt7Vl0xnA5mZCHiGLVx/gXuB9HNM=";
         };
         vendorHash = "sha256-jsZ7noyAhKvOVpcYwCY3DmRvAUOPUczeokat4u6n13A=";
+        nativeBuildInputs = [makeWrapper];
         checkFlags = let
           skippedTests = [
             # Requires network access
