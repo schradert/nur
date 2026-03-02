@@ -18,7 +18,7 @@
         zellij.plugins
         (map (package: nameValuePair package.pname package))
         listToAttrs
-        (mapAttrs (name: plugin: {location = "file:${plugin}/bin/${plugin.filename or name}.wasm";}))
+        (mapAttrs (name: plugin: {location = "file:${plugin.outPath}/bin/${plugin.filename or name}.wasm";}))
       ];
     };
   };
