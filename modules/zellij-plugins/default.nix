@@ -11,18 +11,14 @@
     }: let
       name = src.repo;
       version = src.rev;
-      lockFile = src + "/Cargo.lock";
+      overrideArgs = removeAttrs attrs ["src"];
       defaultArgs = {
         inherit version src;
         pname = name;
-        cargoLock =
-          if builtins.pathExists lockFile
-          then {inherit lockFile;}
-          else null;
+        cargoLock = if overrideArgs ? cargoHash then null else {lockFile = src + "/Cargo.lock";};
         depsBuildBuild = [lld];
         env.RUSTFLAGS = "-C linker=wasm-ld";
       };
-      overrideArgs = removeAttrs attrs ["src"];
     in
       rustPlatform.buildRustPackage (lib.recursiveUpdate defaultArgs overrideArgs)
     ) {
