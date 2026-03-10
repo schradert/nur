@@ -9,7 +9,8 @@
       lld,
       rustPlatform,
     }: let
-      inherit ((lib.importTOML (src + "/Cargo.toml")).package) name version;
+      name = src.repo;
+      version = src.rev;
       lockFile = src + "/Cargo.lock";
       defaultArgs = {
         inherit version src;
