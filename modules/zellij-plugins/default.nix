@@ -1,6 +1,6 @@
 {
-  imports = [./module.nix ./plugins.nix];
-  perSystem = {pkgs, ...}: {legacyPackages = {inherit (pkgs) buildDeckyPlugin;};};
+  imports = [./plugins.nix];
+  perSystem = {pkgs, ...}: {legacyPackages = {inherit (pkgs) buildZellijPlugin;};};
   flake.overlays.zellij = final: _: {
     # NOTE this bespoke solution may not be as robust as the one in zjstatus using crane and rust-overlay
     # LINK https://github.com/dj95/zjstatus/blob/main/flake.nix
