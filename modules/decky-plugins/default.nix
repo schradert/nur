@@ -2,18 +2,21 @@
   imports = [./module.nix ./plugins.nix];
   perSystem = {pkgs, ...}: {legacyPackages = {inherit (pkgs) buildDeckyPlugin;};};
   flake.overlays.decky = final: _: {
-    buildDeckyPlugin = attrs: final.callPackage ({
+    # `pnpm` picks the pnpm matching the plugin's lockfile (pnpm_8 reads v6, pnpm_9 v9)
+    buildDeckyPlugin = {pnpm ? final.pnpm_8, ...} @ attrs: final.callPackage ({
       lib,
-      # NOTE pnpm pinned to version 8 because pnpm.fetchDeps is unstable to changes in pnpm registry tools, which broke "recently"
-      pnpm_8,
+      fetchPnpmDeps,
+      pnpmConfigHook,
       stdenv,
       nodejs,
     }: stdenv.mkDerivation (finalAttrs: lib.recursiveUpdate {
-      pnpmDeps = pnpm_8.fetchDeps {
+      pnpmDeps = fetchPnpmDeps {
         inherit (finalAttrs) pname src version;
+        inherit pnpm;
+        fetcherVersion = 3;
         hash = finalAttrs.pnpmLockHash;
       };
-      nativeBuildInputs = [nodejs pnpm_8.configHook];
+      nativeBuildInputs = [nodejs pnpm pnpmConfigHook];
       buildPhase = "pnpm build";
       # Ignore zero glob matches
       installPhase = ''
@@ -28,6 +31,6 @@
       # TODO build dependencies into each plugin
       passthru.extraPackages = [];
       passthru.extraPythonPackages = _: [];
-    } attrs)) {};
+    } (removeAttrs attrs ["pnpm"]))) {};
   };
 }
