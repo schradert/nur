@@ -31,7 +31,7 @@
     ...
   }: let
     inherit (lib) mkEnableOption mkPackageOption mkOption mkIf;
-    inherit (config.dotfiles.programs) tetrigo;
+    inherit (config.programs) tetrigo;
     toml = pkgs.formats.toml {};
   in {
     options.programs.tetrigo = {
